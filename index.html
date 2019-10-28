@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css"> -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script> -->
+
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+  <script>
+    $(function () {
+
+      $("form[name='registration']").validate({
+        // Specify validation rules
+        rules: {
+          firstname: "required",
+          // lastname: "required",
+          email: {
+            required: true,
+            email: true
+          },
+          password: {
+            required: true,
+            minlength: 5
+          },
+          cnfrmpwd: {
+            required: true,
+            minlength: 5,
+            equalTo: "#password"
+          },
+          Phonenumber: {
+            // required: true,
+            phoneUS: true
+          }
+        },
+        // Specify validation error messages
+        messages: {
+          firstname: "Please enter your firstname",
+          lastname: "Please enter your lastname",
+          password: {
+            required: "Please provide a password",
+            minlength: "Your password must be at least 5 characters long"
+          },
+          cnfrmpwd: {
+            required: "Please provide a password",
+            minlength: "Your password must be at least 5 characters long",
+            equalTo: "Passwords doesnot match"
+          },
+          email: "Please enter a valid email address",
+          Phonenumber: "Please enter a valid phone number"
+        },
+        // Make sure the form is submitted to the destination defined
+        // in the "action" attribute of the form when valid
+        submitHandler: function (form) {
+          form.submit();
+        }
+      });
+    });
+
+    // $("form").submit(function () {
+    //   $(this).children('#cnfrmpwd').remove();
+    // });
+  </script>
+
+</head>
+
+<body>
+
+  <div class="container">
+    <center>
+      <h2>Create your Profile</h2>
+    </center>
+    <form method="POST" action="http://localhost:4000/register" name="registration">
+      <div class="form-group">
+        <label for="firstname">FirstName:</label>
+        <input type="text" class="form-control" id="firstname" placeholder="Enter your first name" name="firstname">
+      </div>
+      <div class="form-group">
+        <label for="lastname">LastName:</label>
+        <input type="text" class="form-control" id="lastname" placeholder="Enter your last name" name="lastname">
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+      </div>
+      <div class="form-group">
+        <label for="company">Company:</label>
+        <input type="text" class="form-control" id="Company" placeholder="Enter name of the company" name="company">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="text" class="form-control" id="Phonenumber" placeholder="Enter Phonenumber" name="Phonenumber">
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+      </div>
+      <div class="form-group">
+        <label for="pwd">Confirm Password:</label>
+        <input type="password" class="form-control" id="cnfrmpwd" placeholder="Enter password" name="cnfrmpwd">
+      </div>
+      <center>
+        <button type="submit" class="btn btn-primary">Register</button>
+      </center>
+    </form>
+  </div>
+
+</body>
+
+</html>
